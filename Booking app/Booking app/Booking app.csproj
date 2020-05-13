@@ -122,8 +122,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Model\Facility.cs" />
     <Compile Include="Model\User.cs" />
+=======
+    <Compile Include="Model\Booking.cs" />
+>>>>>>> 3748b51e783ef51f2195e2892ec04f42a6c02761
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
