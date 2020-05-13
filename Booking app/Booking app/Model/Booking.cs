@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Booking_app.Model
 {
-    class Booking
+    public class Booking
     {
+        public Booking()
+        {
+            
+        }
+
+        public int BookingNo { get; set; }
+        public string Email { get; set; }
+        public int FacilityNo { get; set; }
     }
 }
