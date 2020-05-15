@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace Booking_app.Model
 {
-    class Facility
+    public class Facility
     {
         public int FacilityNo { get; set; }
         public int Floor { get; set; }
         public int Size { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(FacilityNo)}: {FacilityNo}, {nameof(Floor)}: {Floor}, {nameof(Size)}: {Size}";
+        }
     }
 }

@@ -8,7 +8,7 @@ using Booking_app.Model;
 
 namespace Booking_app.Persistency
 {
-    class Persistency
+    public class Persistency
     {
         public static List<User> Users { get; set; } = new List<User>(NewUsers());
         public static List<Booking> Bookings { get; set; } = new List<Booking>(NewBookings());
@@ -86,6 +86,13 @@ namespace Booking_app.Persistency
 
 
             return tempFacilities;
+        }
+
+        public static void AddBooking(Booking booking)
+        {
+            var bookings = GetBookings();
+            bookings.Add(booking);
+            SaveBooking(bookings);
         }
     }
 }

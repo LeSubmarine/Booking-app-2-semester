@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="Booking_app.View.BookPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Booking_app.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Booking_app.ViewModel"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModel:BookPageViewModel />
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Viewbox
+            Grid.RowSpan="2"
+            Margin="20"
+            VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock FontFamily="{Binding Font}" Text="Available rooms" />
+                <ListView ItemsSource="{Binding AvailableRooms, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedRoom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            </StackPanel>
+        </Viewbox>
+        <Viewbox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="20"
+            VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontFamily="{Binding Font}"
+                    Text="Date" />
+                <DatePicker Width="300" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+        </Viewbox>
+        <Viewbox
+            Grid.Row="2"
+            Grid.Column="2"
+            Margin="30">
+            <Button Command="{Binding BookRoomCommand}" Content="Book" />
+        </Viewbox>
+        <Viewbox Grid.Row="2" Margin="30">
+            <Button Command="{Binding BackCommand}" Content="Back" />
+        </Viewbox>
+
+    </Grid>
+</Page>
