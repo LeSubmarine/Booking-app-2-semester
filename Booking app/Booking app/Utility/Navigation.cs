@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using StarfinderCharSheets.View;
-using StarfinderCharSheets.View.CharCreation;
+using Booking_app.View;
 
-namespace StarfinderCharSheets.Utility
+namespace Booking_app.Utility
 {
     static class Navigation
     {
@@ -16,7 +15,7 @@ namespace StarfinderCharSheets.Utility
         public static event Navigate navigateEvent;
         public static Type PageTarget { get; set; }
         public static string PageDeparture { get; set; }
-        public static Dictionary<string,Type> PageDictionary = new Dictionary<string, Type> {{"MainPage",typeof(MainPage)},{"Names",typeof(Names)},{"RaceThemeClass",typeof(RaceThemeClass)},{"CharSheet",typeof(CharSheetViewer)}};
+        public static Dictionary<string,Type> PageDictionary = new Dictionary<string, Type> {{"MainPage",typeof(MainPage)}};
 
         public static void NavigateToPage(string pageTarget, string pageDeparture)
         {
