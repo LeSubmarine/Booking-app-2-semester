@@ -35,7 +35,7 @@ namespace Booking_app.ViewModel
             UpdateAvailableRooms();
             BackCommand = new RelayCommand(Back);
             BookRoomCommand = new RelayCommand(BookRoom);
-            LoggedUser = new User { Email = "henrik@henrik.dk", Name = "Henrik", Password = "Henrik password" };
+            LoggedUser = Persistency.Persistency.GetUsers()[0];
         }
         #endregion
 
