@@ -12,8 +12,16 @@ namespace Booking_app.Model
         public string Password { get; set; }
         public string Name { get; set; }
 
-        
+        public User(string email, string password, string name)
+        {
+            Email = email;
+            Password = password;
+            Name = name;
+        }
 
-
+        public override string ToString()
+        {
+            return $"Email:{Email}, Password:{Password}, Name:{Name}"
+        }
     }
 }

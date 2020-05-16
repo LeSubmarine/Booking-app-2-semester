@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Booking_app.Annotations;
 using Booking_app.Model;
@@ -23,6 +24,7 @@ namespace Booking_app.ViewModel
         private ObservableCollection<Facility> _availableRooms;
         private DateTimeOffset _date;
         private int _selectedRoom;
+        public static readonly DependencyProperty UserViewModelProperty = DependencyProperty.Register("UserViewModel", typeof(object), typeof(BookPageViewModel), new PropertyMetadata(default(object)));
 
         #endregion
 
@@ -62,6 +64,12 @@ namespace Booking_app.ViewModel
         {
             get => _date;
             set { _date = value; UpdateAvailableRooms(); OnPropertyChanged();}
+        }
+
+        public object UserViewModel
+        {
+            get { return (object) GetValue(UserViewModelProperty); }
+            set { SetValue(UserViewModelProperty, value); }
         }
 
         #endregion

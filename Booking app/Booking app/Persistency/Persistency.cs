@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Booking_app.Model;
 
 namespace Booking_app.Persistency
@@ -18,6 +20,8 @@ namespace Booking_app.Persistency
         {
             return Users;
         }
+
+        
 
         public static void SaveUsers(List<User> users)
         {
