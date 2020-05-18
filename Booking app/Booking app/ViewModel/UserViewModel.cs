@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using Booking_app.Utility;
 
 namespace Booking_app.ViewModel
 {
-    class UserViewModel
+    class UserViewModel : INotifyPropertyChanged
     {
         public string Email { get; set; }
         public string Password { get; set; }
@@ -21,20 +22,33 @@ namespace Booking_app.ViewModel
 
         public ICommand AddCommand { get; set; }
 
-        public ICommand SaveCommand { get; set; }
-
         public UserViewModel()
         {
+            Persistency.Persistency.GetUsers();
 
             AddCommand = new RelayCommand(Add);
             //SaveCommand = new RelayCommand(Save);
         }
 
-       
+        //public void Register(User)
+        //{
+        //    if (User.Email "")
+        //    {
+
+        //    }
+
+        //}
+
+        public void Add()
+        { 
+            UsersAdd(new User(Email, Password, Name));
+        }
+
+        
 
         //public void Save()
         //{
-        //    PersistencyService.SaveNotesAsJsonAsync(Users);
+        //    PersistencyService.SaveUsersAsJsonAsync(Users);
         //}
 
         public event PropertyChangedEventHandler PropertyChanged;

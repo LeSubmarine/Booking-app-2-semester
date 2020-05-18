@@ -92,6 +92,13 @@ namespace Booking_app.Persistency
             return tempFacilities;
         }
 
+        public static void AddUser(User user)
+        {
+            var users = GetUsers();
+            users.Add(user);
+            SaveUsers(users);
+        }
+
         public static void AddBooking(Booking booking)
         {
             var bookings = GetBookings();
