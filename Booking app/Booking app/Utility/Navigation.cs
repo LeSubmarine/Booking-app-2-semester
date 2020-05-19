@@ -15,7 +15,7 @@ namespace Booking_app.Utility
         public static event Navigate navigateEvent;
         public static Type PageTarget { get; set; }
         public static string PageDeparture { get; set; }
-        public static Dictionary<string,Type> PageDictionary = new Dictionary<string, Type> {{"MainPage",typeof(MainPage)}};
+        public static Dictionary<string,Type> PageDictionary = new Dictionary<string, Type> {{"MainPage",typeof(Booking_app.View.MainPage) }};
 
         public static void NavigateToPage(string pageTarget, string pageDeparture)
         {
