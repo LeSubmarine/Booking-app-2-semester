@@ -66,11 +66,11 @@ namespace Booking_app.ViewModel
             set { _date = value; UpdateAvailableRooms(); OnPropertyChanged();}
         }
 
-        public object UserViewModel
-        {
-            get { return (object) GetValue(UserViewModelProperty); }
-            set { SetValue(UserViewModelProperty, value); }
-        }
+        //public object UserViewModel
+        //{
+        //    get { return (object) GetValue(UserViewModelProperty); }
+        //    set { SetValue(UserViewModelProperty, value); }
+        //}
 
         #endregion
 

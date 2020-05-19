@@ -41,7 +41,7 @@ namespace Booking_app.ViewModel
 
         public void Add()
         { 
-            UsersAdd(new User(Email, Password, Name));
+            //UsersAdd(new User(Email, Password, Name));
         }
 
         
