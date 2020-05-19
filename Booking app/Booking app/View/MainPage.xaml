@@ -26,12 +26,12 @@
         </Grid.ColumnDefinitions>
         <Viewbox  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="Mine Bookings" FontSize="36"/>
+                <TextBlock Text="My Bookings" FontSize="36"/>
                 <ListView ItemsSource="{Binding UserBookings}" FontSize="11"/>
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="2">
-            <Button Content="Book et lokale"/>
+            <Button Content="Bookaroom"/>
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.Row="0">
             <Button Content="{Binding LoggedUser.Name}"/>
