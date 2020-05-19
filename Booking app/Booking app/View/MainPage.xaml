@@ -9,7 +9,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Light">
 
-    
+    <Page.DataContext>
+        <viewModel:MainPageViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -32,7 +34,7 @@
             <Button Content="Book et lokale"/>
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.Row="0">
-            <Button Content="Bruger"/>
+            <Button Content="{Binding LoggedUser.Name}"/>
         </Viewbox>
         
         
