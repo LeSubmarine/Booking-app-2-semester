@@ -37,7 +37,8 @@ namespace Booking_app.ViewModel
             UpdateAvailableRooms();
             BackCommand = new RelayCommand(Back);
             BookRoomCommand = new RelayCommand(BookRoom);
-            LoggedUser = Persistency.Persistency.GetUsers()[0];
+            LoggedUser = MainPageViewModel.LoggedUser;
+            TeacherBooking = false;
         }
         #endregion
 
@@ -47,6 +48,7 @@ namespace Booking_app.ViewModel
         public string Font { get; set; }
         public ICommand BackCommand { get; set; }
         public ICommand BookRoomCommand { get; set; }
+        public bool TeacherBooking { get; set; }
 
         public int SelectedRoom
         {
@@ -78,38 +80,47 @@ namespace Booking_app.ViewModel
         #region Methods
         public void UpdateAvailableRooms()
         {
-            var BookingsOnDate = from booking in Persistency.Persistency.GetBookings()
-                where booking.Date == Date.DateTime
-                select booking;
-            var updatedAvailableRooms = new ObservableCollection<Facility>(Persistency.Persistency.GetFacilities());
-            List<int> doubleRoomsBooked = new List<int>();
-            foreach (var booking in BookingsOnDate)
+            if (LoggedUser.Email != "lærer@lærer.dk" || Date.DateTime < DateTime.Now.AddDays(3)) //Mangler super-user logik
             {
-                var linqForRoom = from availableRoom in updatedAvailableRooms
-                    where booking.FacilityNo == availableRoom.FacilityNo
-                    select availableRoom;
-                var bookedRoom = linqForRoom.Count() == 1 ? linqForRoom.First() : null;
-                if (bookedRoom != null)
+                var BookingsOnDate = from booking in Persistency.Persistency.GetBookings()
+                                     where booking.Date == Date.DateTime
+                                     select booking;
+                var updatedAvailableRooms = new ObservableCollection<Facility>(Persistency.Persistency.GetFacilities());
+                List<int> doubleRoomsBooked = new List<int>();
+                foreach (var booking in BookingsOnDate)
                 {
-                    if (bookedRoom.Size == 2)
+                    var linqForRoom = from availableRoom in updatedAvailableRooms
+                                      where booking.FacilityNo == availableRoom.FacilityNo
+                                      select availableRoom;
+                    var bookedRoom = linqForRoom.Count() == 1 ? linqForRoom.First() : null;
+                    if (bookedRoom != null)
                     {
-                        if (doubleRoomsBooked.Contains(bookedRoom.FacilityNo))
+                        if (bookedRoom.Size == 2)
                         {
-                            updatedAvailableRooms.Remove(bookedRoom);
+                            if (doubleRoomsBooked.Contains(bookedRoom.FacilityNo))
+                            {
+                                updatedAvailableRooms.Remove(bookedRoom);
+                            }
+                            else
+                            {
+                                doubleRoomsBooked.Add(bookedRoom.FacilityNo);
+                            }
                         }
                         else
                         {
-                            doubleRoomsBooked.Add(bookedRoom.FacilityNo);
+                            updatedAvailableRooms.Remove(bookedRoom);
                         }
                     }
-                    else
-                    {
-                        updatedAvailableRooms.Remove(bookedRoom);
-                    }
                 }
-            }
 
-            AvailableRooms = updatedAvailableRooms;
+                AvailableRooms = updatedAvailableRooms;
+                TeacherBooking = false;
+            }
+            else
+            {
+               AvailableRooms = new ObservableCollection<Facility>(Persistency.Persistency.GetFacilities());
+               TeacherBooking = true;
+            }
         }
 
         public void Back()
@@ -129,6 +140,11 @@ namespace Booking_app.ViewModel
                 if (AvailableRoomsSize == AvailableRooms.Count)
                 {
                     SelectedRoom = tempSelectedRoom;
+                }
+
+                if (TeacherBooking) //Ikke færdig - mangler error tekst
+                {
+
                 }
             }
         }
