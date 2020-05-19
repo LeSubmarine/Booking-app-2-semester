@@ -18,13 +18,14 @@ namespace Booking_app.ViewModel
 
         public MainPageViewModel()
         {
-            LoggedUser = Persistency.Persistency.GetUsers()[0];
+            
             UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.Persistency.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
         }
 
         public ObservableCollection<Booking> UserBookings { get; set; }
-        public User LoggedUser { get; set; }
+        public static User LoggedUser { get; set; }
         public ICommand NavigationCommand { get; set; }
+        
 
         
 

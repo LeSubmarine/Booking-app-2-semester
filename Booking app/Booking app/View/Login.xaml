@@ -1,12 +1,16 @@
-﻿<<Page
+﻿<Page
     x:Class="Booking_app.View.Login"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Booking_app.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Booking_app.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Light">
+    <Page.DataContext>
+        <viewModel:LoginViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,6 +18,26 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Gimme Dat Room"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="E-mail"/>
+                <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="E-mail"/>
+                <TextBlock Text="Password"/>
+                <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" PasswordChar="?"/>
+                <Button Content="Log ind" Command="{Binding LoginCommand}"/>
+            </StackPanel>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Create User" Margin="100,0"/>
+        </Viewbox>
 
     </Grid>
 </Page>
