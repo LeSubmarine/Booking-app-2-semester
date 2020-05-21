@@ -17,39 +17,33 @@ namespace Booking_app.ViewModel
     class UserViewModel : INotifyPropertyChanged
     {
         public string Email { get; set; }
-        public string Password { get; set; }
         public string Name { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
 
-        public ICommand AddCommand { get; set; }
+       //mangler at forbinde med bindings i view CreateUser.
 
+        public ICommand RegisterCommand { get; set; }
         public UserViewModel()
         {
+            RegisterCommand = new RelayCommand(Register);
+        }
+
+        public void Register()
+        {
+            
             Persistency.Persistency.GetUsers();
-
-            AddCommand = new RelayCommand(Add);
-            //SaveCommand = new RelayCommand(Save);
+            var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
+            if (createdUsers.Count() == 1 || createdUsers.Count() > 1)
+            {
+                if (Password == ConfirmPassword)
+                {
+                    var user = new User { Email = Email, Password = Password, Name = Name };
+                    Persistency.Persistency.AddUser(user);
+                }
+            }
+            //jeg mangler at lave fejl besked hvis If statements ikke er opfyldt
         }
-
-        //public void Register(User)
-        //{
-        //    if (User.Email "")
-        //    {
-
-        //    }
-
-        //}
-
-        public void Add()
-        { 
-            //UsersAdd(new User(Email, Password, Name));
-        }
-
-        
-
-        //public void Save()
-        //{
-        //    PersistencyService.SaveUsersAsJsonAsync(Users);
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
