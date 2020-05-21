@@ -32,7 +32,7 @@ namespace Booking_app.ViewModel
             
             Persistency.Persistency.GetUsers();
             var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
-            if (createdUsers.Count() == 1 || createdUsers.Count() > 1)
+            if (!createdUsers.Any())
             {
                 if (Password == ConfirmPassword)
                 {
