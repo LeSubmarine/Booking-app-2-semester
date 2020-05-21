@@ -21,8 +21,6 @@ namespace Booking_app.ViewModel
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
 
-       //mangler at forbinde med bindings i view CreateUser.
-
         public ICommand RegisterCommand { get; set; }
         public UserViewModel()
         {

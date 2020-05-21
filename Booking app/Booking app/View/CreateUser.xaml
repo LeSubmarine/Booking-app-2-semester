@@ -36,24 +36,23 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Text="Name" FontSize="70" TextAlignment="Center" DataContext="{Binding Name, Mode=TwoWay}" />
-        <TextBlock Text="E-mail"/>
-        <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="E-mail"/>
-        <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="4" Text="{Binding Email, Mode=TwoWay}" FontSize="70"/>
-        <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Text="Password" FontSize="70" TextAlignment="Center"/>
-        <TextBlock Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="4" Text="Confirm Password" FontSize="70" TextAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Text="{Binding Name, Mode=TwoWay}" FontSize="70" PlaceholderText="Name" TextAlignment="Center" />
+        <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="4" Text="{Binding Email, Mode=TwoWay}" FontSize="70" PlaceholderText="E-mail" TextAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Text="{Binding Password, Mode=TwoWay}" FontSize="70" PlaceholderText="Password" TextAlignment="Center"/>
+        <TextBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="4" Text="{Binding ConfirmPassword, Mode=TwoWay}" FontSize="70" PlaceholderText="Confirm Password" TextAlignment="Center"/>
         <Button
             Grid.Row="9" Grid.Column="5"
             Grid.ColumnSpan="2"
             Content="Done" 
             FontSize="50"
             Height="165" Width="365" Command="{Binding RegisterCommand}"/>
+        <!--jeg mangler navigation til login-->
         <Button
             Grid.Row="9" Grid.Column="1"
             Grid.ColumnSpan="2"
             Content="Cancel" 
             FontSize="50"
             Height="165" Width="365"/>
-
+        <!--Jeg mangler navigation til Login-->
     </Grid>
 </Page>
