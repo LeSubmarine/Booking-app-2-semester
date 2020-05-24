@@ -36,7 +36,7 @@
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Create User" Margin="100,0"/>
+            <Button Content="Create User" Margin="100,0" Command="{Binding CreateUserCommand}"/>
         </Viewbox>
 
     </Grid>
