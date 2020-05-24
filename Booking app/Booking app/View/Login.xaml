@@ -31,7 +31,7 @@
                 <TextBlock Text="E-mail"/>
                 <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="E-mail"/>
                 <TextBlock Text="Password"/>
-                <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" PasswordChar="?"/>
+                <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" PasswordChar="*"/>
                 <Button Content="Log ind" Command="{Binding LoginCommand}"/>
             </StackPanel>
         </Viewbox>
