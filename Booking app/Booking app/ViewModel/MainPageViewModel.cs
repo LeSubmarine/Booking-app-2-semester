@@ -20,17 +20,24 @@ namespace Booking_app.ViewModel
         public MainPageViewModel()
         {
             NavigationCommand = new RelayCommand(BookRoom);
-            
+            LogoutCommand = new RelayCommand(LogOut);
             UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.Persistency.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
         }
 
         public ObservableCollection<Booking> UserBookings { get; set; }
         public static User LoggedUser { get; set; }
         public ICommand NavigationCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         public void BookRoom()
         {
             Navigation.NavigateToPage("BookPage", "MainPage");
+        }
+
+        public void LogOut()
+        {
+            LoggedUser = null;
+            Navigation.NavigateToPage("Login","MainPage");
         }
 
         

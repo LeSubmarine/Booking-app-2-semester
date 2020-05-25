@@ -105,5 +105,12 @@ namespace Booking_app.Persistency
             bookings.Add(booking);
             SaveBooking(bookings);
         }
+
+        public static void RemoveBooking(Booking removedBooking)
+        {
+            var bookings = GetBookings();
+            bookings.Remove(removedBooking);
+            SaveBooking(bookings);
+        }
     }
 }
