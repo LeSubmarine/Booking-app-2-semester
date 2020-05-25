@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Booking_app.Annotations;
@@ -15,7 +16,7 @@ using Booking_app.Utility;
 
 namespace Booking_app.ViewModel
 {
-    class UserViewModel : INotifyPropertyChanged
+    class CreateUserViewModel : INotifyPropertyChanged
     {
         public string Email { get; set; }
         public string Name { get; set; }
@@ -24,7 +25,7 @@ namespace Booking_app.ViewModel
         public ICommand CancelCommand { get; set; }
 
         public ICommand RegisterCommand { get; set; }
-        public UserViewModel()
+        public CreateUserViewModel()
         {
             Email = "";
             Name = "";
@@ -40,19 +41,29 @@ namespace Booking_app.ViewModel
             var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
             if (!createdUsers.Any())
             {
-                if (Email.Contains("@"))
+                if (ValidateMailAdr(Email))
                 {
                     var user = new User { Email = Email, Password = Password, Name = Name };
                     Persistency.Persistency.AddUser(user);
                     Navigation.NavigateToPage("Login", "CreateUser");
                 }
+                else
+                {
+                    MessageDialogHelper.Show("Email is not valid","Error");
+                }
             }
             else
             {
-                //Email = "Email already in use";
-                //Propertien har ikke implementeret property changed så man kan ikke ændre i guien pt
+                MessageDialogHelper.Show("Email is already registered","Error");
             }
-            //jeg mangler at lave fejl besked hvis If statements ikke er opfyldt
+        }
+        public static bool ValidateMailAdr(string mailAdr)
+        {
+            if (Regex.IsMatch(mailAdr, @"^([\w.-]+)@([\w-]+)((.(\w){2,})+)$"))
+            {
+                return true;
+            }
+            return false;
         }
 
         public void CancelButton()
