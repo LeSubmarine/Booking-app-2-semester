@@ -26,6 +26,10 @@ namespace Booking_app.ViewModel
         public ICommand RegisterCommand { get; set; }
         public UserViewModel()
         {
+            Email = "";
+            Name = "";
+            Password = "";
+            ConfirmPassword = "";
             CancelCommand = new RelayCommand(CancelButton);
             RegisterCommand = new RelayCommand(Register);
         }
@@ -33,7 +37,6 @@ namespace Booking_app.ViewModel
         public void Register()
         {
             
-            Persistency.Persistency.GetUsers();
             var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
             if (!createdUsers.Any())
             {
@@ -46,7 +49,8 @@ namespace Booking_app.ViewModel
             }
             else
             {
-                Email = "Email already in use";
+                //Email = "Email already in use";
+                //Propertien har ikke implementeret property changed så man kan ikke ændre i guien pt
             }
             //jeg mangler at lave fejl besked hvis If statements ikke er opfyldt
         }
