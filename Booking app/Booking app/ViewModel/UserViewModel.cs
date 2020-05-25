@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
@@ -34,11 +35,23 @@ namespace Booking_app.ViewModel
             var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
             if (!createdUsers.Any())
             {
-                if (Password == ConfirmPassword)
+                if (Email.Contains("@"))
                 {
-                    var user = new User { Email = Email, Password = Password, Name = Name };
-                    Persistency.Persistency.AddUser(user);
+                    if (Password == ConfirmPassword)
+                    {
+                        var user = new User { Email = Email, Password = Password, Name = Name };
+                        Persistency.Persistency.AddUser(user);
+                    }
+
                 }
+                else
+                {
+                   // Exception ArgumentNullException
+                }
+            }
+            else
+            {
+                Email = "Email already in use";
             }
             //jeg mangler at lave fejl besked hvis If statements ikke er opfyldt
         }
