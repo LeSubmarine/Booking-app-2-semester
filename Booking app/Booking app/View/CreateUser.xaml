@@ -52,7 +52,8 @@
             Grid.ColumnSpan="2"
             Content="Cancel" 
             FontSize="50"
-            Height="165" Width="365"/>
+            Height="165" Width="365"
+            Command="{Binding CancelCommand}"/>
         <!--Jeg mangler navigation til Login-->
     </Grid>
 </Page>

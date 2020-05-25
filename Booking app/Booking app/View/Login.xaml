@@ -31,12 +31,12 @@
                 <TextBlock Text="E-mail"/>
                 <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="E-mail"/>
                 <TextBlock Text="Password"/>
-                <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" PasswordChar="?"/>
+                <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" PasswordChar="*"/>
                 <Button Content="Log ind" Command="{Binding LoginCommand}"/>
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Create User" Margin="100,0"/>
+            <Button Content="Create User" Margin="100,0" Command="{Binding CreateUserCommand}"/>
         </Viewbox>
 
     </Grid>

@@ -21,10 +21,12 @@ namespace Booking_app.ViewModel
         public string Name { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         public ICommand RegisterCommand { get; set; }
         public UserViewModel()
         {
+            CancelCommand = new RelayCommand(CancelButton);
             RegisterCommand = new RelayCommand(Register);
         }
 
@@ -37,16 +39,9 @@ namespace Booking_app.ViewModel
             {
                 if (Email.Contains("@"))
                 {
-                    if (Password == ConfirmPassword)
-                    {
-                        var user = new User { Email = Email, Password = Password, Name = Name };
-                        Persistency.Persistency.AddUser(user);
-                    }
-
-                }
-                else
-                {
-                   // Exception ArgumentNullException
+                    var user = new User { Email = Email, Password = Password, Name = Name };
+                    Persistency.Persistency.AddUser(user);
+                    Navigation.NavigateToPage("Login", "CreateUser");
                 }
             }
             else
@@ -54,6 +49,11 @@ namespace Booking_app.ViewModel
                 Email = "Email already in use";
             }
             //jeg mangler at lave fejl besked hvis If statements ikke er opfyldt
+        }
+
+        public void CancelButton()
+        {
+            Navigation.NavigateToPage("Login", "CreateUser");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

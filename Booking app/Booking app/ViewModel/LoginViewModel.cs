@@ -13,12 +13,14 @@ namespace Booking_app.ViewModel
     {
         public LoginViewModel()
         {
+            CreateUserCommand = new RelayCommand(NaviCreateUser);
             LoginCommand = new RelayCommand(Login);
         }
 
         public string Email { get; set; }
         public string Password { get; set; }
         public ICommand LoginCommand { get; set; }
+        public ICommand CreateUserCommand { get; set; }
 
         public void Login()
         {
@@ -31,6 +33,11 @@ namespace Booking_app.ViewModel
                     Navigation.NavigateToPage("MainPage","Login");
                 }
             }
+        }
+
+        public void NaviCreateUser()
+        {
+            Navigation.NavigateToPage("CreateUser", "Login");
         }
     }
 }

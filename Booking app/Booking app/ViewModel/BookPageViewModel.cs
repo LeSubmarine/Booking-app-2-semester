@@ -80,6 +80,10 @@ namespace Booking_app.ViewModel
         #region Methods
         public void UpdateAvailableRooms()
         {
+            if (LoggedUser == null)
+            {
+                LoggedUser = MainPageViewModel.LoggedUser;
+            }
             if (LoggedUser.Email != "lærer@lærer.dk" || Date.DateTime < DateTime.Now.AddDays(3)) //Mangler super-user logik
             {
                 var BookingsOnDate = from booking in Persistency.Persistency.GetBookings()
@@ -125,7 +129,7 @@ namespace Booking_app.ViewModel
 
         public void Back()
         {
-
+            Navigation.NavigateToPage("MainPage","BookPage");
         }
 
         public void BookRoom()

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Booking_app.Annotations;
 using Booking_app.Model;
+using Booking_app.Utility;
 
 namespace Booking_app.ViewModel
 {
@@ -18,6 +19,7 @@ namespace Booking_app.ViewModel
 
         public MainPageViewModel()
         {
+            NavigationCommand = new RelayCommand(BookRoom);
             
             UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.Persistency.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
         }
@@ -25,7 +27,11 @@ namespace Booking_app.ViewModel
         public ObservableCollection<Booking> UserBookings { get; set; }
         public static User LoggedUser { get; set; }
         public ICommand NavigationCommand { get; set; }
-        
+
+        public void BookRoom()
+        {
+            Navigation.NavigateToPage("BookPage", "MainPage");
+        }
 
         
 

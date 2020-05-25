@@ -26,14 +26,15 @@ namespace Booking_app.View
         public CreateUser()
         {
             this.InitializeComponent();
+            Navigation.navigateEvent += Navigate;
         }
 
-        //public void Navigate()
-        //{
-        //    if (Navigation.PageDeparture == "CreateUser")
-        //    {
-        //        this.Frame.Navigate(Navigation.PageTarget);
-        //    }
-        //}
+        public void Navigate()
+        {
+            if (Navigation.PageDeparture == "CreateUser")
+            {
+                this.Frame.Navigate(Navigation.PageTarget);
+            }
+        }
     }
 }
