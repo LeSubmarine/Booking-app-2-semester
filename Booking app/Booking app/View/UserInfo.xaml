@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
-        <viewModel:MainPageViewModel/>
+        <viewModel:UserInfoViewModel/>
     </Page.DataContext>
 
     <Grid>
@@ -35,20 +35,23 @@
                 <TextBlock Text="Email" FontSize="10"/>
                 <TextBlock Text="{Binding LoggedUser.Email}"/>
                 <TextBlock Text="School" FontSize="10"/>
-                <TextBlock Text="Zealand"/>
+                <TextBlock Text="Zealand Roskilde"/>
             </StackPanel>
         </Viewbox>
 
         <Viewbox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left">
             <StackPanel>
+                <TextBlock Text=""/>
+                <Button Content="Edit"/>
                 <TextBlock/>
-                <TextBlock Text="Hello"/>
+                <Button Content="Edit"/>
                 <TextBlock/>
-                <TextBlock/>
-                <TextBlock/>
-                <TextBlock/>
+                <Button Content="Edit"/>
 
             </StackPanel>
+        </Viewbox>
+        <Viewbox Grid.Column="0" Grid.Row="2">
+            <Button Content="Back" Command="{Binding BackCommand}" Height="30" Width="60" Margin="10"/>
         </Viewbox>
 
     </Grid>

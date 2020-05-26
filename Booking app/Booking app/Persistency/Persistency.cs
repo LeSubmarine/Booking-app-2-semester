@@ -12,18 +12,18 @@ namespace Booking_app.Persistency
 {
     public class Persistency
     {
-        public static List<User> Users { get; set; } = new List<User>(NewUsers());
+        public static List<ZealandUser> Users { get; set; } = new List<ZealandUser>(NewUsers());
         public static List<Booking> Bookings { get; set; } = new List<Booking>(NewBookings());
         public static List<Facility> Facilities { get; set; } = new List<Facility>(NewFacilities());
 
-        public static List<User> GetUsers()
+        public static List<ZealandUser> GetUsers()
         {
             return Users;
         }
 
         
 
-        public static void SaveUsers(List<User> users)
+        public static void SaveUsers(List<ZealandUser> users)
         {
             Users = users;
         }
@@ -49,13 +49,14 @@ namespace Booking_app.Persistency
         }
 
 
-        public static List<User> NewUsers()
+        public static List<ZealandUser> NewUsers()
         {
-            List<User> tempUsers = new List<User>();
-            tempUsers.Add(new User{Email = "henrik@henrik.dk",Name = "Henrik",Password = "Henrik password"});
-            tempUsers.Add(new User{Email = "mike@mike.dk",Name = "Mike",Password = "Mike password"});
-            tempUsers.Add(new User{Email = "tobi@tobi.dk",Name = "Tobi",Password = "Tobi password"});
-            tempUsers.Add(new User{Email = "lærer@lærer.dk",Name = "Lærer",Password = "Lærer password"});
+            List<ZealandUser> tempUsers = new List<ZealandUser>();
+            tempUsers.Add(new ZealandUser{Email = "henrik@henrik.dk",Name = "Henrik",Password = "Henrik password"});
+            tempUsers.Add(new ZealandUser{Email = "mike@mike.dk",Name = "Mike",Password = "Mike password"});
+            tempUsers.Add(new ZealandUser{Email = "tobi@tobi.dk",Name = "Tobi",Password = "Tobi password"});
+            tempUsers.Add(new ZealandUser{Email = "lærer@lærer.dk",Name = "Lærer",Password = "Lærer password"});
+            tempUsers.Add(new ZealandUser{Email = "s@s.dk",Name = "Smooth Operator",Password = "s"});
 
             return tempUsers;
         }
@@ -92,7 +93,7 @@ namespace Booking_app.Persistency
             return tempFacilities;
         }
 
-        public static void AddUser(User user)
+        public static void AddUser(ZealandUser user)
         {
             var users = GetUsers();
             users.Add(user);

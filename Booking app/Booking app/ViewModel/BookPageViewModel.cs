@@ -46,7 +46,7 @@ namespace Booking_app.ViewModel
 
 
         #region Properties
-        public User LoggedUser { get; set; }
+        public ZealandUser LoggedUser { get; set; }
         public string Font { get; set; }
         public ICommand BackCommand { get; set; }
         public ICommand BookRoomCommand { get; set; }

@@ -38,7 +38,7 @@
             <Button Command="{Binding NavigationCommand}" Content="Bookaroom" />
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="2">
-            <Button Command="{Binding LogoutCommand}" Content="Log out" />
+            <Button Command="{Binding LogoutCommand}" Content="Log out" Height="35" Width="70" Margin="10"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="0">
             <Button Content="{Binding LoggedUser.Name}" Command="{Binding UserInfoCommand}"/>
