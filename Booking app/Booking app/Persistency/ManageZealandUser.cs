@@ -45,7 +45,7 @@ namespace Booking_app.Persistency
         public ZealandUser Delete(string email)
         {
             ZealandUser zealandUser = Get(email);
-            ExecuteNonQueryZealandUser($"DELETE FROM ZealandUser WHERE Email={email}");
+            ExecuteNonQueryZealandUser($"DELETE FROM ZealandUser WHERE Email='{email}'");
             return zealandUser;
         }
 
@@ -87,7 +87,7 @@ namespace Booking_app.Persistency
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
 
-                string queryString = $"select * from ZealandUser where Email = {email}";
+                string queryString = $"select * from ZealandUser where Email = '{email}'";
 
                 SqlCommand command = new SqlCommand(queryString, connection);
 
@@ -111,7 +111,7 @@ namespace Booking_app.Persistency
 
         public bool Update(ZealandUser zealandUser, string email)
         {
-            int rowsAffected = ExecuteNonQueryZealandUser($"UPDATE ZealandUser SET Name='{zealandUser.Name}', Password='{zealandUser.Password}', School='{zealandUser.School}' WHERE Email={email}");
+            int rowsAffected = ExecuteNonQueryZealandUser($"UPDATE ZealandUser SET Name='{zealandUser.Name}', Password='{zealandUser.Password}', School='{zealandUser.School}' WHERE Email='{email}'");
             return (rowsAffected == 1);
         }
     }

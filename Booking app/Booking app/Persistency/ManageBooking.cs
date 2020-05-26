@@ -120,7 +120,7 @@ namespace Booking_app.Persistency
 
         public bool Update(Booking booking, int bookingNo)
         {
-            int rowsAffected = ExecuteNonQueryBooking($"UPDATE Booking SET Floor='{booking.FacilityNo}', Size='{booking.Email}', Size='{booking.Date}' WHERE BookingNo={bookingNo}");
+            int rowsAffected = ExecuteNonQueryBooking($"UPDATE Booking SET FacilityNo={booking.FacilityNo}, Email='{booking.Email}', Date='{booking.Date}' WHERE BookingNo={bookingNo}");
             return (rowsAffected == 1);
         }
     }

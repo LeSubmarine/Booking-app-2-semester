@@ -31,7 +31,7 @@ namespace Booking_app.ViewModel
 
         public async void EditName()
         {
-            var answer = await MessageDialogInputHelper.InputTextDialogAsync("Edit Name:", LoggedUser.Name);
+            var answer = await MessageDialogInputHelper.InputTextDialogAsync("Enter new name", LoggedUser.Name);
 
             if (answer != "")
             { 
@@ -39,8 +39,5 @@ namespace Booking_app.ViewModel
                 PersistencyService.UpdateUser(LoggedUser.Email,LoggedUser);
             }
         }
-
-
-
     }
 }

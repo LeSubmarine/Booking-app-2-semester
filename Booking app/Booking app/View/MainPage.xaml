@@ -26,22 +26,34 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Viewbox
-            Grid.Row="1"
+            Grid.RowSpan="2"
             Grid.Column="1"
             VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock FontSize="36" Text="My Bookings" />
-                <ListView FontSize="11" ItemsSource="{Binding UserBookings}" SelectedIndex="{Binding SelectedBooking, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <TextBlock
+                    Margin="0,50,0,0"
+                    FontSize="36"
+                    Text="My Bookings" />
+                <ListView
+                    Height="500"
+                    FontSize="11"
+                    ItemsSource="{Binding UserBookings}"
+                    SelectedIndex="{Binding SelectedBooking, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="1">
             <Button Command="{Binding NavigationCommand}" Content="Bookaroom" />
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="2">
-            <Button Command="{Binding LogoutCommand}" Content="Log out" Height="35" Width="70" Margin="10"/>
+            <Button
+                Width="70"
+                Height="35"
+                Margin="10"
+                Command="{Binding LogoutCommand}"
+                Content="Log out" />
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="0">
-            <Button Content="{Binding LoggedUser.Name}" Command="{Binding UserInfoCommand}"/>
+            <Button Command="{Binding UserInfoCommand}" Content="{Binding LoggedUser.Name}" />
         </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="0">
             <Button Command="{Binding CancelBookingCommand}" Content="Cancel Booking" />
