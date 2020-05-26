@@ -110,7 +110,7 @@ namespace Booking_app.Persistency
 
                     facility.FacilityNo = reader.GetInt32(0); //læser int fra første søjle
                     facility.Floor = reader.GetInt32(1); //læser int fra anden søjle
-                    facility.Size = reader.GetInt32(1); //læser int fra tredje søjle
+                    facility.Size = reader.GetInt32(2); //læser int fra tredje søjle
 
                 }
             }
