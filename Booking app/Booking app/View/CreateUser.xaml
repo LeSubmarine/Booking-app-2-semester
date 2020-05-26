@@ -12,7 +12,7 @@
     <Page.DataContext>
         <viewModel:CreateUserViewModel />
     </Page.DataContext>
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -36,8 +36,13 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="2" Background="#FFF387">
+            <TextBlock Text="Register" TextAlignment="Center" FontSize="80" Width="1550" VerticalAlignment="Center" />
+        </StackPanel>
+        
         <Viewbox
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.RowSpan="7"
             Grid.Column="1"
             Grid.ColumnSpan="6">
@@ -45,28 +50,28 @@
                 <TextBox
                     Width="600"
                     Margin="20"
-                    FontSize="70"
+                    FontSize="50"
                     PlaceholderText="Name"
                     Text="{Binding Name, Mode=TwoWay}"
                     TextAlignment="Center" />
                 <TextBox
                     Width="600"
                     Margin="20"
-                    FontSize="70"
+                    FontSize="50"
                     PlaceholderText="E-mail"
                     Text="{Binding Email, Mode=TwoWay}"
-                    TextAlignment="Center" />
+                    TextAlignment="Center"/>
                 <TextBox
                     Width="600"
                     Margin="20"
-                    FontSize="70"
+                    FontSize="50"
                     PlaceholderText="Password"
                     Text="{Binding Password, Mode=TwoWay}"
                     TextAlignment="Center" />
                 <TextBox
                     Width="600"
                     Margin="20"
-                    FontSize="70"
+                    FontSize="50"
                     PlaceholderText="Confirm Password"
                     Text="{Binding ConfirmPassword, Mode=TwoWay}"
                     TextAlignment="Center" />
@@ -81,7 +86,8 @@
                 Height="165"
                 Command="{Binding CancelCommand}"
                 Content="Cancel"
-                FontSize="50" />
+                FontSize="50" 
+                Background="#FFF387"/>
         </Viewbox>
         <Viewbox
             Grid.Row="9"
@@ -92,7 +98,8 @@
                 Height="165"
                 Command="{Binding RegisterCommand}"
                 Content="Done"
-                FontSize="50" />
+                FontSize="50"
+                Background="#FFF387"/>
         </Viewbox>
 
 

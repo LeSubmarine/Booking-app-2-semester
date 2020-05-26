@@ -16,47 +16,71 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Viewbox
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="8"
             Grid.RowSpan="2"
-            Grid.Column="1"
+            Background="#FFF387"
+            Width="1500">
+
+            <TextBlock Text="My Bookings" FontSize="80" HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+            </TextBlock>
+        </StackPanel>
+        <StackPanel
+            Grid.RowSpan="6"
+            Grid.Column="2"
+            Grid.Row="2"
+            Grid.ColumnSpan="4"
             VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock
-                    Margin="0,50,0,0"
-                    FontSize="36"
-                    Text="My Bookings" />
                 <ListView
                     Height="500"
                     FontSize="11"
                     ItemsSource="{Binding UserBookings}"
                     SelectedIndex="{Binding SelectedBooking, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
+        </StackPanel>
+        <Viewbox Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2">
+            <Button Command="{Binding NavigationCommand}" Content="Book a room" Background="#FFF387"/>
         </Viewbox>
-        <Viewbox Grid.Row="2" Grid.Column="1">
-            <Button Command="{Binding NavigationCommand}" Content="Bookaroom" />
-        </Viewbox>
-        <Viewbox Grid.Row="0" Grid.Column="2">
+        <Viewbox Grid.Row="0" Grid.Column="7">
             <Button
                 Width="70"
                 Height="35"
-                Margin="10"
+                
                 Command="{Binding LogoutCommand}"
-                Content="Log out" />
+                Content="Log out" 
+                Background="#FFF387"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="0">
             <Button Command="{Binding UserInfoCommand}" Content="{Binding LoggedUser.Name}" />
         </Viewbox>
-        <Viewbox Grid.Row="2" Grid.Column="0">
-            <Button Command="{Binding CancelBookingCommand}" Content="Cancel Booking" />
+        <Viewbox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2">
+            <Button Command="{Binding CancelBookingCommand}" Content="Cancel Booking" Background="#FFF387" />
         </Viewbox>
 
     </Grid>

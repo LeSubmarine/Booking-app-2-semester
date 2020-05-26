@@ -3,5 +3,72 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Booking_app">
+    <Application.Resources>
+        
+        <!--Leftovers of a failed attempt-->
+        <Style TargetType="Button" x:Key="BStyleBotLeft">
+            <Setter Property="Background" Value="#FFF387"/>
+            <Setter Property="Grid.Row" Value="9" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Grid.ColumnSpan" Value="2"/> 
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="165"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
 
+        <Style TargetType="Button" x:Key="BStyleBotRight">
+            <Setter Property="Background" Value="#FFF387"/>
+            <Setter Property="Grid.Row" Value="9" />
+            <Setter Property="Grid.Column" Value="5" />
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="165"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BStyleBotMiddle">
+            <Setter Property="Background" Value="#FFF387"/>
+            <Setter Property="Grid.Row" Value="9" />
+            <Setter Property="Grid.Column" Value="3" />
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="165"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BStyleBotTopRight">
+            <Setter Property="Background" Value="#FFF387"/>
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Grid.Column" Value="5" />
+            <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="165"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BStyleTopLeft">
+            <Setter Property="Background" Value="#FFF387"/>
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="165"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style TargetType="TextBox" x:Key="InputTextBox">
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="165"/>
+            <Setter Property="FontSize" Value="50"/>
+        </Style>
+
+    </Application.Resources>
 </Application>
