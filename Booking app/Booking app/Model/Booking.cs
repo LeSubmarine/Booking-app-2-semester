@@ -15,7 +15,7 @@ namespace Booking_app.Model
 
         public override string ToString()
         {
-            return $"Class Room Nr.: {FacilityNo}, {nameof(Email)}: {Email}, {nameof(Date)}: {Date}";
+            return $"Class Room: {FacilityNo}, {nameof(Email)}: {Email}, {nameof(Date)}: {Date}";
         }
 
     }

@@ -15,15 +15,33 @@ namespace Booking_app.ViewModel
         public UserInfoViewModel()
         {
             BackCommand = new RelayCommand(Back);
+            EditNameCommand = new RelayCommand(EditName);
             LoggedUser = MainPageViewModel.LoggedUser;
         }
 
         public ICommand BackCommand { get; set; }
+        public ICommand EditNameCommand { get; set; }
         public ZealandUser LoggedUser { get; set; }
 
         public void Back()
         {
             Navigation.NavigateToPage("MainPage", "UserInfo");
         }
+
+        public async void EditName()
+        {
+            var answer = await MessageDialogInputHelper.InputTextDialogAsync("Edit Name:", LoggedUser.Name);
+
+            if (answer != "")
+            {
+                LoggedUser.Name = answer;
+            }
+            else
+            {
+                
+            }
+        }
+
+
     }
 }
