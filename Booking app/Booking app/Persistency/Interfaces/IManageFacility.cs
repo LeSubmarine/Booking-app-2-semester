@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Booking_app.Model;
 
-namespace Booking_app.Persistency
+namespace Booking_app.Persistency.Interfaces
 {
     interface IManageFacility
     {

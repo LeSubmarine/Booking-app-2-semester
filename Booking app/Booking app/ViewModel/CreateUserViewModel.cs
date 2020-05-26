@@ -18,19 +18,6 @@ namespace Booking_app.ViewModel
 {
     class CreateUserViewModel : INotifyPropertyChanged
     {
-        #region Properties
-        public string Email { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
-        #endregion
-
-        #region Commands
-        public ICommand CancelCommand { get; set; }
-
-        public ICommand RegisterCommand { get; set; }
-        #endregion
-
         #region Constructor
         public CreateUserViewModel()
         {
@@ -43,6 +30,17 @@ namespace Booking_app.ViewModel
         }
         #endregion
 
+
+        #region Properties
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+        public ICommand CancelCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
+        #endregion
+
+
         #region Methods
         public void Register()
         {
@@ -51,7 +49,7 @@ namespace Booking_app.ViewModel
             {
                 if (ValidateMailAdr(Email))
                 {
-                    var user = new ZealandUser { Email = Email, Password = Password, Name = Name };
+                    var user = new ZealandUser { Email = Email, Password = Password, Name = Name , School = "Zealand Roskilde"};
                     Persistency.Persistency.AddUser(user);
                     Navigation.NavigateToPage("Login", "CreateUser");
                 }
@@ -80,6 +78,7 @@ namespace Booking_app.ViewModel
             Navigation.NavigateToPage("Login", "CreateUser");
         }
         #endregion
+
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

@@ -36,7 +36,7 @@ namespace Booking_app.ViewModel
             set { _selectedBooking = value; OnPropertyChanged(); }
         }
         public ObservableCollection<Booking> UserBookings { get; set; }
-        public static User LoggedUser { get; set; }
+        public static ZealandUser LoggedUser { get; set; }
         public ICommand NavigationCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand CancelBookingCommand { get; set; }
