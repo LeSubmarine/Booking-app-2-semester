@@ -25,11 +25,12 @@ namespace Booking_app.ViewModel
             NavigationCommand = new RelayCommand(BookRoom);
             LogoutCommand = new RelayCommand(LogOut);
             CancelBookingCommand = new RelayCommand(CancelBooking);
+            UserInfoCommand = new RelayCommand(UserInfo);
             UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.PersistencyService.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
 
         }
 
-        
+
         public int SelectedBooking
         {
             get => _selectedBooking;
@@ -40,11 +41,17 @@ namespace Booking_app.ViewModel
         public ICommand NavigationCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand CancelBookingCommand { get; set; }
+        public ICommand UserInfoCommand { get; set; }
         public void BookRoom()
         {
             Navigation.NavigateToPage("BookPage", "MainPage");
         }
 
+
+        private void UserInfo()
+        {
+            Navigation.NavigateToPage("UserInfo","MainPage");
+        }
         public void LogOut()
         {
             LoggedUser = null;
