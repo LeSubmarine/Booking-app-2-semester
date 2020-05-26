@@ -44,13 +44,13 @@ namespace Booking_app.ViewModel
         #region Methods
         public void Register()
         {
-            var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
+            var createdUsers = from users in Persistency.PersistencyService.GetUsers() where Email == users.Email select users;
             if (!createdUsers.Any())
             {
                 if (ValidateMailAdr(Email))
                 {
                     var user = new ZealandUser { Email = Email, Password = Password, Name = Name , School = "Zealand Roskilde"};
-                    Persistency.Persistency.AddUser(user);
+                    Persistency.PersistencyService.AddUser(user);
                     Navigation.NavigateToPage("Login", "CreateUser");
                 }
                 else

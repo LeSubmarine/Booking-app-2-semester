@@ -19,7 +19,6 @@ namespace Booking_app.ViewModel
     /*
      * Hvis det er mulig skal der så vidt muligt laves en mere effektiv måde at opdaterer Available rooms, istedet for at bare slette hele skidtet, og genskabe det. Det grimt, og potentielt langsomt
      */
-    //Logik til lære er lortet til, msg box er også funktionel, men logikken er trash emoji
     class BookPageViewModel : INotifyPropertyChanged
     {
         #region Instance field
@@ -86,12 +85,12 @@ namespace Booking_app.ViewModel
             {
                 LoggedUser = MainPageViewModel.LoggedUser;
             }
-            if (LoggedUser.Email != "lærer@lærer.dk" || Date.DateTime < DateTime.Now.AddDays(3)) //Mangler super-user logik
+            if (LoggedUser.Email != "lærer@lærer.dk" || Date.DateTime < DateTime.Now.AddDays(3))
             {
-                var BookingsOnDate = from booking in Persistency.Persistency.GetBookings()
+                var BookingsOnDate = from booking in Persistency.PersistencyService.GetBookings()
                                      where booking.Date == Date.DateTime
                                      select booking;
-                var updatedAvailableRooms = new ObservableCollection<Facility>(Persistency.Persistency.GetFacilities());
+                var updatedAvailableRooms = new ObservableCollection<Facility>(Persistency.PersistencyService.GetFacilities());
                 List<int> doubleRoomsBooked = new List<int>();
                 foreach (var booking in BookingsOnDate)
                 {
@@ -118,19 +117,25 @@ namespace Booking_app.ViewModel
                         }
                     }
                 }
-
+                var ownBookings = from m in PersistencyService.GetBookings()
+                    where m.Email == LoggedUser.Email && m.Date == Date.DateTime
+                    select m;
+                foreach (var booking in ownBookings)
+                {
+                    updatedAvailableRooms.Remove((from m in PersistencyService.GetFacilities() where booking.FacilityNo == m.FacilityNo select m).First());
+                }
                 AvailableRooms = updatedAvailableRooms;
                 TeacherBooking = false;
             }
             else
             {
-               AvailableRooms = new ObservableCollection<Facility>(Persistency.Persistency.GetFacilities());
-               var ownBookings = from m in Persistency.Persistency.GetBookings()
+               AvailableRooms = new ObservableCollection<Facility>(PersistencyService.GetFacilities());
+               var ownBookings = from m in PersistencyService.GetBookings()
                    where m.Email == LoggedUser.Email && m.Date == Date.DateTime
                    select m;
                foreach (var booking in ownBookings)
                {
-                   AvailableRooms.Remove((from m in Persistency.Persistency.GetFacilities() where booking.FacilityNo == m.FacilityNo select m).First());
+                   AvailableRooms.Remove((from m in PersistencyService.GetFacilities() where booking.FacilityNo == m.FacilityNo select m).First());
                }
                TeacherBooking = true;
             }
@@ -143,68 +148,108 @@ namespace Booking_app.ViewModel
 
         public async void BookRoom()
         {
+            //Er det et reelt rum der er valgt
             if (SelectedRoom >= 0 && SelectedRoom < AvailableRooms.Count)
             {
+                //Er det en lærer der booker
                 if (TeacherBooking) //Ikke færdig - mangler error tekst
                 {
+                    //Vil læren gerne booke rummet selv hvis det allerede er booket?
                     if (await CheckIfBookedForTeacher(Date.DateTime, SelectedRoom))
                     {
-                        var bookingsOnDateWithRoom = from m in Persistency.Persistency.GetBookings()
-                            where m.Date == Date && m.FacilityNo == SelectedRoom
+                        var bookingsOnDateWithRoom = from m in PersistencyService.GetBookings()
+                            where m.Date == Date && m.FacilityNo == AvailableRooms[SelectedRoom].FacilityNo
                             select m;
+                        //Hvis der ikke er andre bookinger kører vi bare
                         if (bookingsOnDateWithRoom.Count() == 0)
                         {
-                            var newBooking = new Booking { BookingNo = Persistency.Persistency.GetBookings().Count + 1, Date = Date.DateTime, Email = LoggedUser.Email, FacilityNo = AvailableRooms[SelectedRoom].FacilityNo };
-                            Persistency.Persistency.AddBooking(newBooking);
-                            int AvailableRoomsSize = AvailableRooms.Count;
-                            int tempSelectedRoom = SelectedRoom;
+                            AddBooking(Date.DateTime, LoggedUser.Email, AvailableRooms[SelectedRoom].FacilityNo);
                             UpdateAvailableRooms();
-                            if (AvailableRoomsSize == AvailableRooms.Count)
+                        }
+                        //Hvis der er en booking
+                        else if (bookingsOnDateWithRoom.Count() == 1)
+                        {
+                            //Hvis det er et stort rum no problem
+                            if (PersistencyService.GetFacility(bookingsOnDateWithRoom.First().FacilityNo).Size == 2)
                             {
-                                SelectedRoom = tempSelectedRoom;
+                                AddBooking(Date.DateTime, LoggedUser.Email, AvailableRooms[SelectedRoom].FacilityNo);
+                            }
+                            //Hvis vi skal slette personens rum
+                            else
+                            {
+                                //Vi sletter kun hvis det er en elevs rum
+                                if (!ZealandUser.IsTeacher(
+                                    PersistencyService.GetUser(bookingsOnDateWithRoom.Last().Email)))
+                                {
+                                    var newBooking = bookingsOnDateWithRoom.Last();
+                                    newBooking.Email = LoggedUser.Email;
+                                    PersistencyService.UpdateBooking(bookingsOnDateWithRoom.Last().BookingNo,
+                                        newBooking);
+                                }
+                                else
+                                {
+                                    MessageDialogHelper.Show("This room is booked by another teacher", "Error");
+                                }
                             }
                         }
+                        //Hvis der er to bookinger
                         else
                         {
-                            //Sidste af to booking på en dag bliver altid fjernet først
-                            var newBooking = bookingsOnDateWithRoom.Last();
-                            newBooking.Email = LoggedUser.Email;
-                            Persistency.Persistency.RemoveBooking(bookingsOnDateWithRoom.Last());
-                            Persistency.Persistency.AddBooking(newBooking);
-                            int AvailableRoomsSize = AvailableRooms.Count;
-                            int tempSelectedRoom = SelectedRoom;
-                            UpdateAvailableRooms();
-                            if (AvailableRoomsSize == AvailableRooms.Count)
+                            //Hvis den sidste booking af de to er af en lærer
+                            if (ZealandUser.IsTeacher(PersistencyService.GetUser(bookingsOnDateWithRoom.Last().Email)))
                             {
-                                SelectedRoom = tempSelectedRoom;
+                                //Hvis den første ikke er af en lærer
+                                if (!ZealandUser.IsTeacher(PersistencyService.GetUser(bookingsOnDateWithRoom.First().Email)))
+                                {
+                                    var newBooking = bookingsOnDateWithRoom.First();
+                                    newBooking.Email = LoggedUser.Email;
+                                    PersistencyService.UpdateBooking(bookingsOnDateWithRoom.First().BookingNo, newBooking);
+                                }
+                                //Hvis begge rum er booket af en lærer
+                                else
+                                {
+                                    MessageDialogHelper.Show("This room is booked by another teacher", "Error");
+                                }
+                            }
+                            //Hvis det sidste rum ikke var booket af en lærer
+                            else
+                            {
+                                var newBooking = bookingsOnDateWithRoom.Last();
+                                newBooking.Email = LoggedUser.Email;
+                                PersistencyService.UpdateBooking(bookingsOnDateWithRoom.Last().BookingNo, newBooking);
                             }
                         }
                     }
                 }
+                //Det er ikke en lærer der booker
                 else
                 {
-                    var newBooking = new Booking { BookingNo = Persistency.Persistency.GetBookings().Count + 1, Date = Date.DateTime, Email = LoggedUser.Email, FacilityNo = AvailableRooms[SelectedRoom].FacilityNo };
-                    Persistency.Persistency.AddBooking(newBooking);
-                    int AvailableRoomsSize = AvailableRooms.Count;
-                    int tempSelectedRoom = SelectedRoom;
+                    AddBooking(Date.DateTime,LoggedUser.Email,AvailableRooms[SelectedRoom].FacilityNo);
                     UpdateAvailableRooms();
-                    if (AvailableRoomsSize == AvailableRooms.Count)
-                    {
-                        SelectedRoom = tempSelectedRoom;
-                    }
                 }
                 
             }
         }
 
-        public void AddBooking()
+        public void AddBooking(DateTime date, string email, int facilityNo)
         {
+            List<Booking> allBookings = PersistencyService.GetBookings();
+            Booking newBooking = new Booking { BookingNo = allBookings.Count + 1, Date = date, Email = email, FacilityNo = facilityNo };
 
+            for (int i = 0; i < allBookings.Count; i++)
+            {
+                if (!((from m in allBookings where m.BookingNo == i select m).Any()))
+                {
+                    newBooking.BookingNo = i;
+                    break;
+                }
+            }
+            PersistencyService.AddBooking(newBooking);
         }
 
         public async Task<bool> CheckIfBookedForTeacher(DateTime date, int roomNo)
         {
-            var bookingsOnDateWithRoom = from m in Persistency.Persistency.GetBookings()
+            var bookingsOnDateWithRoom = from m in Persistency.PersistencyService.GetBookings()
                 where m.Date == date && m.FacilityNo == roomNo
                 select m;
             if (bookingsOnDateWithRoom.Any())
@@ -220,7 +265,7 @@ namespace Booking_app.ViewModel
         #endregion
 
 
-        #region IPropertyChanged implement
+#region IPropertyChanged implement
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -228,6 +273,6 @@ namespace Booking_app.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         } 
-        #endregion
+#endregion
     }
 }

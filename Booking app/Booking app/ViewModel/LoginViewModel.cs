@@ -26,7 +26,7 @@ namespace Booking_app.ViewModel
 
         public void Login()
         {
-            var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
+            var createdUsers = from users in Persistency.PersistencyService.GetUsers() where Email == users.Email select users;
             if (createdUsers.Count() == 1)
             {
                 if (createdUsers.First().Password == Password)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Booking_app.Model;
+using Booking_app.Persistency;
 using Booking_app.Utility;
 
 namespace Booking_app.ViewModel
@@ -33,14 +34,12 @@ namespace Booking_app.ViewModel
             var answer = await MessageDialogInputHelper.InputTextDialogAsync("Edit Name:", LoggedUser.Name);
 
             if (answer != "")
-            {
+            { 
                 LoggedUser.Name = answer;
-            }
-            else
-            {
-                
+                PersistencyService.UpdateUser(LoggedUser.Email,LoggedUser);
             }
         }
+
 
 
     }

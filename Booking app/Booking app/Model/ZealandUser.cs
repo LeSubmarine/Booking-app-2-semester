@@ -18,5 +18,15 @@ namespace Booking_app.Model
         {
             return $"Email: {Email}, Password: {Password}, Name: {Name}";
         }
+
+        public static bool IsTeacher(ZealandUser user)
+        {
+            if (user.Email == "lærer@lærer.dk")
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

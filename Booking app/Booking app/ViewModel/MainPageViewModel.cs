@@ -25,7 +25,7 @@ namespace Booking_app.ViewModel
             NavigationCommand = new RelayCommand(BookRoom);
             LogoutCommand = new RelayCommand(LogOut);
             CancelBookingCommand = new RelayCommand(CancelBooking);
-            UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.Persistency.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
+            UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.PersistencyService.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
 
         }
 
@@ -57,7 +57,7 @@ namespace Booking_app.ViewModel
             {
                 var booking = UserBookings[SelectedBooking];
                 UserBookings.Remove(booking);
-                Persistency.Persistency.RemoveBooking(booking);
+                Persistency.PersistencyService.RemoveBooking(booking);
             }
         }
 
