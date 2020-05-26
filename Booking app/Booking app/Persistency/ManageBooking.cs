@@ -120,8 +120,17 @@ namespace Booking_app.Persistency
 
         public bool Update(Booking booking, int bookingNo)
         {
-            int rowsAffected = ExecuteNonQueryBooking($"UPDATE Booking SET FacilityNo={booking.FacilityNo}, Email='{booking.Email}', Date='{booking.Date}' WHERE BookingNo={bookingNo}");
-            return (rowsAffected == 1);
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string queryString = $"UPDATE Booking SET FacilityNo={booking.FacilityNo}, Email='{booking.Email}', Date=@value WHERE BookingNo={bookingNo}";
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@value", booking.Date);
+                command.Connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+
+                return (rowsAffected == 1);
+            }
         }
     }
 }
