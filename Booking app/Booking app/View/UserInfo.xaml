@@ -39,5 +39,17 @@
             </StackPanel>
         </Viewbox>
 
+        <Viewbox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left">
+            <StackPanel>
+                <TextBlock/>
+                <TextBlock Text="Hello"/>
+                <TextBlock/>
+                <TextBlock/>
+                <TextBlock/>
+                <TextBlock/>
+
+            </StackPanel>
+        </Viewbox>
+
     </Grid>
 </Page>
