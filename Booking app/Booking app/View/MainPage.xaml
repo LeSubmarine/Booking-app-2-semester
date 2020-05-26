@@ -40,6 +40,9 @@
         <Viewbox Grid.Row="0" Grid.Column="2">
             <Button Command="{Binding LogoutCommand}" Content="Log out" />
         </Viewbox>
+        <Viewbox Grid.Row="0" Grid.Column="0">
+            <Button Content="{Binding LoggedUser.Name}" Command="{Binding UserInfoCommand}"/>
+        </Viewbox>
 
 
 
