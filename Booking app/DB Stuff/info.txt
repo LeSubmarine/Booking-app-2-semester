@@ -1,0 +1,4 @@
+kode: !henrik1mike1tobias!
+navn: BookingAppDB
+server: bookingapp2semester
+username: hmt

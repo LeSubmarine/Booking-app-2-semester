@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booking_app.Model
 {
-    public class User
+    public class ZealandUser
     {
         public string Email { get; set; }
         public string Password { get; set; }

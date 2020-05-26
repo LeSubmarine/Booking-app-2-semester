@@ -51,7 +51,7 @@ namespace Booking_app.ViewModel
             {
                 if (ValidateMailAdr(Email))
                 {
-                    var user = new User { Email = Email, Password = Password, Name = Name };
+                    var user = new ZealandUser { Email = Email, Password = Password, Name = Name };
                     Persistency.Persistency.AddUser(user);
                     Navigation.NavigateToPage("Login", "CreateUser");
                 }
