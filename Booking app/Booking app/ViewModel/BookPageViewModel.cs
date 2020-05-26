@@ -197,6 +197,11 @@ namespace Booking_app.ViewModel
             }
         }
 
+        public void AddBooking()
+        {
+
+        }
+
         public async Task<bool> CheckIfBookedForTeacher(DateTime date, int roomNo)
         {
             var bookingsOnDateWithRoom = from m in Persistency.Persistency.GetBookings()
