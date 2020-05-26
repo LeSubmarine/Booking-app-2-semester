@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -14,7 +16,6 @@ namespace Booking_app.Persistency
     {
         public static List<User> Users { get; set; } = new List<User>(NewUsers());
         public static List<Booking> Bookings { get; set; } = new List<Booking>(NewBookings());
-        public static List<Facility> Facilities { get; set; } = new List<Facility>(NewFacilities());
 
         public static List<User> GetUsers()
         {
@@ -40,12 +41,7 @@ namespace Booking_app.Persistency
 
         public static List<Facility> GetFacilities()
         {
-            return Facilities;
-        }
-
-        public static void SaveFacilities(List<Facility> facilities)
-        {
-            Facilities = facilities;
+            return (new ManageFacility()).Get();
         }
 
 
@@ -75,21 +71,6 @@ namespace Booking_app.Persistency
 
 
             return tempBookings;
-        }
-        public static List<Facility> NewFacilities()
-        {
-            List<Facility> tempFacilities = new List<Facility>();
-            tempFacilities.Add(new Facility {FacilityNo = 1, Floor = 1, Size = 1});
-            tempFacilities.Add(new Facility {FacilityNo = 2, Floor = 1, Size = 2});
-            tempFacilities.Add(new Facility {FacilityNo = 3, Floor = 1, Size = 2});
-            tempFacilities.Add(new Facility {FacilityNo = 4, Floor = 1, Size = 2});
-            tempFacilities.Add(new Facility {FacilityNo = 5, Floor = 2, Size = 1});
-            tempFacilities.Add(new Facility {FacilityNo = 6, Floor = 2, Size = 2});
-            tempFacilities.Add(new Facility {FacilityNo = 7, Floor = 2, Size = 1});
-            tempFacilities.Add(new Facility {FacilityNo = 8, Floor = 2, Size = 1});
-
-
-            return tempFacilities;
         }
 
         public static void AddUser(User user)

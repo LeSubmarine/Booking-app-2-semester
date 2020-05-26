@@ -122,6 +122,8 @@
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Facility.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Persistency\IManageFacility.cs" />
+    <Compile Include="Persistency\ManageFacility.cs" />
     <Compile Include="Persistency\Persistency.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,8 +187,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.7</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

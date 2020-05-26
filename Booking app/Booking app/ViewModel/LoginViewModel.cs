@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Booking_app.Model;
+using Booking_app.Persistency;
 using Booking_app.Utility;
 using Booking_app.View;
 
