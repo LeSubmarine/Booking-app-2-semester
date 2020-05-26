@@ -56,6 +56,7 @@ namespace Booking_app.Persistency
             tempUsers.Add(new User{Email = "mike@mike.dk",Name = "Mike",Password = "Mike password"});
             tempUsers.Add(new User{Email = "tobi@tobi.dk",Name = "Tobi",Password = "Tobi password"});
             tempUsers.Add(new User{Email = "lærer@lærer.dk",Name = "Lærer",Password = "Lærer password"});
+            tempUsers.Add(new User { Email = "jan", Name = "Jan", Password = "jan" });
 
             return tempUsers;
         }

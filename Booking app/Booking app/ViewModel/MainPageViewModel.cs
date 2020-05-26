@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Booking_app.Annotations;
 using Booking_app.Model;
 using Booking_app.Utility;
@@ -15,20 +16,30 @@ namespace Booking_app.ViewModel
 {
     class MainPageViewModel : INotifyPropertyChanged
     {
-
+        #region Instancefield
+        private int _selectedBooking;
+        #endregion
 
         public MainPageViewModel()
         {
             NavigationCommand = new RelayCommand(BookRoom);
             LogoutCommand = new RelayCommand(LogOut);
+            CancelBookingCommand = new RelayCommand(CancelBooking);
             UserBookings = new ObservableCollection<Booking>(from NewBookings in Persistency.Persistency.GetBookings() where NewBookings.Email == LoggedUser.Email select NewBookings);
+
         }
 
+        
+        public int SelectedBooking
+        {
+            get => _selectedBooking;
+            set { _selectedBooking = value; OnPropertyChanged(); }
+        }
         public ObservableCollection<Booking> UserBookings { get; set; }
         public static User LoggedUser { get; set; }
         public ICommand NavigationCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
-
+        public ICommand CancelBookingCommand { get; set; }
         public void BookRoom()
         {
             Navigation.NavigateToPage("BookPage", "MainPage");
@@ -40,17 +51,15 @@ namespace Booking_app.ViewModel
             Navigation.NavigateToPage("Login","MainPage");
         }
 
-        
-
-
-
-
-
-
-
-
-
-
+        public void CancelBooking()
+        {
+            if (SelectedBooking >= 0)
+            {
+                var booking = UserBookings[SelectedBooking];
+                UserBookings.Remove(booking);
+                Persistency.Persistency.RemoveBooking(booking);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

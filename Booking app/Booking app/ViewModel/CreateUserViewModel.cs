@@ -18,13 +18,20 @@ namespace Booking_app.ViewModel
 {
     class CreateUserViewModel : INotifyPropertyChanged
     {
+        #region Properties
         public string Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        #endregion
+
+        #region Commands
         public ICommand CancelCommand { get; set; }
 
         public ICommand RegisterCommand { get; set; }
+        #endregion
+
+        #region Constructor
         public CreateUserViewModel()
         {
             Email = "";
@@ -34,10 +41,11 @@ namespace Booking_app.ViewModel
             CancelCommand = new RelayCommand(CancelButton);
             RegisterCommand = new RelayCommand(Register);
         }
+        #endregion
 
+        #region Methods
         public void Register()
         {
-            
             var createdUsers = from users in Persistency.Persistency.GetUsers() where Email == users.Email select users;
             if (!createdUsers.Any())
             {
@@ -57,6 +65,7 @@ namespace Booking_app.ViewModel
                 MessageDialogHelper.Show("Email is already registered","Error");
             }
         }
+        
         public static bool ValidateMailAdr(string mailAdr)
         {
             if (Regex.IsMatch(mailAdr, @"^([\w.-]+)@([\w-]+)((.(\w){2,})+)$"))
@@ -65,12 +74,14 @@ namespace Booking_app.ViewModel
             }
             return false;
         }
-
+        
         public void CancelButton()
         {
             Navigation.NavigateToPage("Login", "CreateUser");
         }
+        #endregion
 
+        #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -78,5 +89,6 @@ namespace Booking_app.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
 }

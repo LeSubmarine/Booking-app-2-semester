@@ -31,7 +31,7 @@
             VerticalAlignment="Top">
             <StackPanel>
                 <TextBlock FontSize="36" Text="My Bookings" />
-                <ListView FontSize="11" ItemsSource="{Binding UserBookings}" />
+                <ListView FontSize="11" ItemsSource="{Binding UserBookings}" SelectedIndex="{Binding SelectedBooking, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="1">
@@ -40,9 +40,9 @@
         <Viewbox Grid.Row="0" Grid.Column="2">
             <Button Command="{Binding LogoutCommand}" Content="Log out" />
         </Viewbox>
-
-
-
+        <Viewbox Grid.Row="2" Grid.Column="0">
+            <Button Command="{Binding CancelBookingCommand}" Content="Cancel Booking" />
+        </Viewbox>
 
     </Grid>
 </Page>

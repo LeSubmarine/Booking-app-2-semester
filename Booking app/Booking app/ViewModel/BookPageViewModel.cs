@@ -77,7 +77,7 @@ namespace Booking_app.ViewModel
         //}
 
         #endregion
-
+        
 
         #region Methods
         public void UpdateAvailableRooms()
