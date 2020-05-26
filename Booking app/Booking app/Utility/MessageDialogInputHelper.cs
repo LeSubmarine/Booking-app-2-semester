@@ -9,7 +9,7 @@ namespace Booking_app.Utility
 {
     public class MessageDialogInputHelper
     {
-        public async Task<string> InputTextDialogAsync(string title, string content)
+        public static async Task<string> InputTextDialogAsync(string title, string content)
         {
             TextBox inputTextBox = new TextBox();
             inputTextBox.AcceptsReturn = false;
