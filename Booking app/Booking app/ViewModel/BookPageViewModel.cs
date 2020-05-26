@@ -85,12 +85,21 @@ namespace Booking_app.ViewModel
             {
                 LoggedUser = MainPageViewModel.LoggedUser;
             }
+            
             if (LoggedUser.Email != "lærer@lærer.dk" || Date.DateTime < DateTime.Now.AddDays(3))
             {
                 var BookingsOnDate = from booking in Persistency.PersistencyService.GetBookings()
                                      where booking.Date == Date.DateTime
                                      select booking;
-                var updatedAvailableRooms = new ObservableCollection<Facility>(Persistency.PersistencyService.GetFacilities());
+                var updatedAvailableRooms = new ObservableCollection<Facility>(PersistencyService.GetFacilities());
+                var numberOfBookedRoomsByUser = from m in PersistencyService.GetBookings() where m.Email == LoggedUser.Email select m;
+                if (numberOfBookedRoomsByUser.Count() > 2)
+                {
+                    for (int i = 0; i < updatedAvailableRooms.Count;)
+                    {
+                        updatedAvailableRooms.RemoveAt(0);
+                    }
+                }
                 List<int> doubleRoomsBooked = new List<int>();
                 foreach (var booking in BookingsOnDate)
                 {
@@ -148,7 +157,7 @@ namespace Booking_app.ViewModel
 
         public async void BookRoom()
         {
-            //Er det et reelt rum der er valgt
+            //Er det et reelt rum der er blevet valgt
             if (SelectedRoom >= 0 && SelectedRoom < AvailableRooms.Count)
             {
                 //Er det en lærer der booker
