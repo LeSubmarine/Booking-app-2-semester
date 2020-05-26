@@ -27,22 +27,6 @@ namespace Booking_app.Persistency
             return (new ManageFacility()).Get();
         }
 
-        public static List<Booking> NewBookings()
-        {
-            var temp = new ManageBooking();
-            temp.Create(new Booking {BookingNo = 1, Email = "henrik@henrik.dk",Date = (DateTime.Today).AddDays(4),FacilityNo = 0});
-            temp.Create(new Booking {BookingNo = 2, Email = "henrik@henrik.dk",Date = (DateTime.Today),FacilityNo = 5});
-            temp.Create(new Booking {BookingNo = 3, Email = "mike@mike.dk",Date = (DateTime.Today).AddDays(1),FacilityNo = 4});
-            temp.Create(new Booking {BookingNo = 4, Email = "mike@mike.dk",Date = (DateTime.Today),FacilityNo = 0});
-            temp.Create(new Booking {BookingNo = 5, Email = "tobi@tobi.dk",Date = (DateTime.Today),FacilityNo = 1});
-            temp.Create(new Booking {BookingNo = 6, Email = "tobi@tobi.dk",Date = (DateTime.Today),FacilityNo = 4});
-            temp.Create(new Booking {BookingNo = 7, Email = "lærer@lærer.dk",Date = (DateTime.Today).AddDays(1),FacilityNo = 5});
-            temp.Create(new Booking {BookingNo = 8, Email = "lærer@lærer.dk",Date = (DateTime.Today).AddDays(2),FacilityNo = 1});
-
-
-            return temp.Get();
-        }
-
         public static void AddUser(ZealandUser user)
         {
             (new ManageZealandUser()).Create(user);

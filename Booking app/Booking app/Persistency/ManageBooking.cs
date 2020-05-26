@@ -32,17 +32,16 @@ namespace Booking_app.Persistency
 
         public bool Create(Booking booking)
         {
-            //Insert into Hotel Values(xx, yy, zz, ...)
-            //throw new NotImplementedException();
 
             int rowsAffected = 0;
-
+                
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                string queryString = $"INSERT INTO Booking VALUES({booking.BookingNo}, {booking.FacilityNo}, '{booking.Email}', {booking.Date})";
+                string queryString = $"INSERT INTO Booking VALUES({booking.BookingNo}, {booking.FacilityNo}, '{booking.Email}', @value)";
 
                 SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@value", booking.Date);
 
                 command.Connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
