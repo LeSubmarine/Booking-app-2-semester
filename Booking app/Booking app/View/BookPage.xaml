@@ -75,7 +75,7 @@
                 Height="90"
                 Background="#FFF387"
                 Command="{Binding BookRoomCommand}"
-                Content="Book"
+                Content="Book room"
                 FontSize="50" 
                 HorizontalAlignment="Center"/>
         </StackPanel>
@@ -89,7 +89,8 @@
                 Background="#FFF387"
                 Command="{Binding BackCommand}"
                 Content="Back"
-                FontSize="50" />
+                FontSize="50" 
+                HorizontalAlignment="Center"/>
         </StackPanel>
 
     </Grid>
