@@ -74,7 +74,7 @@
                     PlaceholderText="E-mail"
                     Text="{Binding Email, Mode=TwoWay}"
                     TextAlignment="Center"/>
-                <TextBox
+                <PasswordBox
                     
                     Width="600"
                     Margin="20"
