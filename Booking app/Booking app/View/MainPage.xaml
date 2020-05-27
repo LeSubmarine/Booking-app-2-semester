@@ -77,7 +77,7 @@
                 Background="#FFF387"/>
         </Viewbox>
         <Viewbox Grid.Row="0" Grid.Column="0">
-            <Button Command="{Binding UserInfoCommand}" Content="{Binding LoggedUser.Name}" />
+            <Button Command="{Binding UserInfoCommand}" Content="{Binding LoggedUser.Name}" Click="Button_Click" Background="#FFF387"/>
         </Viewbox>
         <Viewbox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2">
             <Button Command="{Binding CancelBookingCommand}" Content="Cancel Booking" Background="#FFF387" />

@@ -51,42 +51,66 @@
             VerticalAlignment="Center">
             </TextBlock>
         </StackPanel>
-        <Viewbox
+        <StackPanel
             Grid.Row="2"
             Grid.Column="1"
             Grid.ColumnSpan="6"
             Grid.RowSpan="9"
             VerticalAlignment="Top">
+            
+           
+        </StackPanel>
+        <Viewbox
+            Grid.Row="2"
+            Grid.RowSpan="7"
+            Grid.Column="2"
+            Grid.ColumnSpan="4">
             <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Text="E-mail" />
+                
                 <TextBox
-                    Width="100"
+                    Width="600"
+                    Margin="20"
+                    FontSize="40"
                     PlaceholderText="E-mail"
-                    Text="{Binding Email, Mode=TwoWay}" />
-                <TextBlock HorizontalAlignment="Center" Text="Password" />
-                <PasswordBox
-                    Width="100"
-                    Password="{Binding Password, Mode=TwoWay}"
-                    PasswordChar="*"
-                    PlaceholderText="Password" />
-                <Button
-                    Width="100"
-                    HorizontalAlignment="Center"
-                    Command="{Binding LoginCommand}"
-                    Content="Log ind" 
-                    FontSize="10"
-                    Background="#FFF387"/>
+                    Text="{Binding Email, Mode=TwoWay}"
+                    TextAlignment="Center"/>
+                <TextBox
+                    
+                    Width="600"
+                    Margin="20"
+                    FontSize="40"
+                    PlaceholderText="Password"
+                    Text="{Binding Password, Mode=TwoWay}"
+                    TextAlignment="Center" />
             </StackPanel>
         </Viewbox>
         <Viewbox
-            Grid.Row="2"
-            Grid.Column="1"
+            Grid.Row="9"
+            Grid.Column="4"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <Button
-                Margin="100,0"
+                
+                Command="{Binding LoginCommand}"
+                Content="Log In" 
+                
+                Width="100"
+                Background="#FFF387"/>
+        </Viewbox>
+        <Viewbox
+            Grid.Row="9"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button
+                
                 Command="{Binding CreateUserCommand}"
-                Content="Create User" />
+                Content="Create User" 
+                
+                Width="100"
+                Background="#FFF387"/>
         </Viewbox>
 
     </Grid>
