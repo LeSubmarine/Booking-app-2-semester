@@ -41,21 +41,24 @@
 
         <StackPanel
             Grid.Row="0"
+            Grid.RowSpan="2"
             Grid.Column="0"
             Grid.ColumnSpan="8"
-            Grid.RowSpan="2"
-            Background="#FFF387"
-            Width="1500">
+            Width="1500"
+            Background="#FFF387">
 
-            <TextBlock Text="User Information" FontSize="100" HorizontalAlignment="Center"
-                       VerticalAlignment="Center" Grid.RowSpan="2">
-            </TextBlock>
+            <TextBlock
+                Grid.RowSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="100"
+                Text="User Information" />
         </StackPanel>
         <Viewbox
             Grid.Row="2"
+            Grid.RowSpan="7"
             Grid.Column="1"
             Grid.ColumnSpan="5"
-            Grid.RowSpan="7"
             HorizontalAlignment="Left">
             <StackPanel>
                 <TextBlock FontSize="10" Text="Name" />
@@ -63,29 +66,49 @@
                 <TextBlock FontSize="10" Text="Email" />
                 <TextBlock Text="{Binding LoggedUser.Email}" />
                 <TextBlock FontSize="10" Text="School" />
-                <TextBlock Text="Zealand Roskilde" FontSize="8"/>
+                <TextBlock FontSize="8" Text="Zealand Roskilde" />
             </StackPanel>
         </Viewbox>
 
-        <StackPanel 
-                Grid.Row="2"
-                Grid.Column="6"
-                Grid.RowSpan="6"
-                HorizontalAlignment="Center" Width="187">
+        <StackPanel
+            Grid.Row="2"
+            Grid.RowSpan="6"
+            Grid.Column="6"
+            Width="187"
+            HorizontalAlignment="Center">
             <TextBlock Text="" />
-            <Button Command="{Binding EditNameCommand}" FontSize="40" Content="Edit" Width="200" Height="100" Background="#FFF387"/>
-            <Viewbox Width="200" Height="100"></Viewbox>
-            <Button Content="Edit" FontSize="40" Width="200" Height="100" Background="#FFF387"/>
-            <Viewbox Width="200" Height="100"></Viewbox>
-            <Button Content="Edit" FontSize="40" Width="200" Height="100" Background="#FFF387"/>
+            <Button
+                Width="200"
+                Height="100"
+                Background="#FFF387"
+                Command="{Binding EditNameCommand}"
+                Content="Edit"
+                FontSize="40" />
+            <Viewbox Width="200" Height="100" />
+            <Button
+                Width="200"
+                Height="100"
+                Background="#FFF387"
+                Content="Edit"
+                FontSize="40" />
+            <Viewbox Width="200" Height="100" />
+            <Button
+                Width="200"
+                Height="100"
+                Background="#FFF387"
+                Content="Edit"
+                FontSize="40" />
 
         </StackPanel>
 
         <Viewbox Grid.Row="10" Grid.Column="1">
             <Button
-                FontSize="40" Width="200" Height="100" Background="#FFF387"
+                Width="200"
+                Height="100"
+                Background="#FFF387"
                 Command="{Binding BackCommand}"
-                Content="Back" />
+                Content="Back"
+                FontSize="40" />
         </Viewbox>
 
     </Grid>
