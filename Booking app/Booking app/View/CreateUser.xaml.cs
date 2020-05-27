@@ -34,6 +34,7 @@ namespace Booking_app.View
             if (Navigation.PageDeparture == "CreateUser")
             {
                 this.Frame.Navigate(Navigation.PageTarget);
+                Navigation.navigateEvent -= Navigate;
             }
         }
     }

@@ -14,7 +14,7 @@
     </Page.DataContext>
 
     <Grid>
-       
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -41,47 +41,44 @@
 
         <StackPanel
             Grid.Row="0"
+            Grid.RowSpan="2"
             Grid.Column="0"
             Grid.ColumnSpan="8"
-            Grid.RowSpan="2"
-            Background="#FFF387"
-            Width="1500">
+            Width="1500"
+            Background="#FFF387">
 
-            <TextBlock Text="Gimme Dat Room" FontSize="80" HorizontalAlignment="Center"
-            VerticalAlignment="Center">
-            </TextBlock>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="80"
+                Text="Gimme Dat Room" />
         </StackPanel>
         <StackPanel
             Grid.Row="2"
+            Grid.RowSpan="9"
             Grid.Column="1"
             Grid.ColumnSpan="6"
-            Grid.RowSpan="9"
-            VerticalAlignment="Top">
-            
-           
-        </StackPanel>
+            VerticalAlignment="Top" />
         <Viewbox
             Grid.Row="2"
             Grid.RowSpan="7"
             Grid.Column="2"
             Grid.ColumnSpan="4">
             <StackPanel>
-                
+
                 <TextBox
                     Width="600"
                     Margin="20"
                     FontSize="40"
                     PlaceholderText="E-mail"
                     Text="{Binding Email, Mode=TwoWay}"
-                    TextAlignment="Center"/>
-                <TextBox
-                    
+                    TextAlignment="Center" />
+                <PasswordBox
                     Width="600"
                     Margin="20"
                     FontSize="40"
-                    PlaceholderText="Password"
-                    Text="{Binding Password, Mode=TwoWay}"
-                    TextAlignment="Center" />
+                    Password="{Binding Password, Mode=TwoWay}"
+                    PlaceholderText="Password" />
             </StackPanel>
         </Viewbox>
         <Viewbox
@@ -91,12 +88,10 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <Button
-                
-                Command="{Binding LoginCommand}"
-                Content="Log In" 
-                
                 Width="100"
-                Background="#FFF387"/>
+                Background="#FFF387"
+                Command="{Binding LoginCommand}"
+                Content="Log In" />
         </Viewbox>
         <Viewbox
             Grid.Row="9"
@@ -105,12 +100,10 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <Button
-                
-                Command="{Binding CreateUserCommand}"
-                Content="Create User" 
-                
                 Width="100"
-                Background="#FFF387"/>
+                Background="#FFF387"
+                Command="{Binding CreateUserCommand}"
+                Content="Create User" />
         </Viewbox>
 
     </Grid>

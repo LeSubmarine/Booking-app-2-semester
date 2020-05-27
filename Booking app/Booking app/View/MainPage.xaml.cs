@@ -34,6 +34,7 @@ namespace Booking_app.View
             if (Navigation.PageDeparture == "MainPage")
             {
                 this.Frame.Navigate(Navigation.PageTarget);
+                Navigation.navigateEvent -= Navigate;
             }
         }
     }

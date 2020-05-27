@@ -139,12 +139,13 @@ namespace Booking_app.ViewModel
             else
             {
                AvailableRooms = new ObservableCollection<Facility>(PersistencyService.GetFacilities());
-               var ownBookings = from m in PersistencyService.GetBookings()
-                   where m.Email == LoggedUser.Email && m.Date == Date.DateTime
-                   select m;
-               foreach (var booking in ownBookings)
+               for (int i = 0; i < AvailableRooms.Count; i++)
                {
-                   AvailableRooms.Remove(PersistencyService.GetFacility(booking.FacilityNo));
+                   if ((from m in PersistencyService.GetBookings() where AvailableRooms[i].FacilityNo == m.FacilityNo && m.Email == LoggedUser.Email && m.Date == Date select m).Any())
+                   {
+                       AvailableRooms.RemoveAt(i);
+                       i--;
+                   }
                }
                TeacherBooking = true;
             }

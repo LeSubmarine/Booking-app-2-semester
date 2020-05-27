@@ -36,23 +36,35 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.RowSpan="2" Grid.ColumnSpan="8" Grid.Column="0"  Background="#FFF387">
-            <TextBlock FontFamily="{Binding Font}" Text="Available rooms" FontSize="80" TextAlignment="Center" HorizontalTextAlignment="Center" VerticalAlignment="Center" />
+        <StackPanel
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="8"
+            Background="#FFF387">
+            <TextBlock
+                VerticalAlignment="Center"
+                FontFamily="{Binding Font}"
+                FontSize="80"
+                HorizontalTextAlignment="Center"
+                Text="Available rooms"
+                TextAlignment="Center" />
         </StackPanel>
         <Viewbox
-            Grid.RowSpan="8" Grid.ColumnSpan="4" Grid.Column="2" Grid.Row="2"
-            
+            Grid.Row="2"
+            Grid.RowSpan="7"
+            Grid.Column="2"
+            Grid.ColumnSpan="4"
             VerticalAlignment="Top">
             <StackPanel>
-                
+
                 <ListView ItemsSource="{Binding AvailableRooms, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedRoom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
         </Viewbox>
         <Viewbox
             Grid.Row="2"
+            Grid.RowSpan="6"
             Grid.Column="2"
             Grid.ColumnSpan="4"
-            Grid.RowSpan="6"
             Margin="20"
             VerticalAlignment="Top">
             <StackPanel>
@@ -64,19 +76,29 @@
             </StackPanel>
         </Viewbox>
         <StackPanel
-            Background="#FFF387"
             Grid.Row="9"
             Grid.Column="3"
             Grid.ColumnSpan="2"
-            
-            >
-            <Button Command="{Binding BookRoomCommand}" Content="Book" Width="375" Height="90" FontSize="50" Background="#FFF387"/>
+            Background="#FFF387">
+            <Button
+                Width="375"
+                Height="90"
+                Background="#FFF387"
+                Command="{Binding BookRoomCommand}"
+                Content="Book"
+                FontSize="50" />
         </StackPanel>
         <StackPanel
-            Background="#FFF387"
             Grid.Row="9"
-            Grid.Column="1">
-            <Button Command="{Binding BackCommand}" Content="Back" Width="190" Height="90" FontSize="50" Background="#FFF387"/>
+            Grid.Column="1"
+            Background="#FFF387">
+            <Button
+                Width="190"
+                Height="90"
+                Background="#FFF387"
+                Command="{Binding BackCommand}"
+                Content="Back"
+                FontSize="50" />
         </StackPanel>
 
     </Grid>
