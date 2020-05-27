@@ -72,15 +72,13 @@
                     Margin="20"
                     FontSize="40"
                     PlaceholderText="E-mail"
-                    Text="{Binding Email, Mode=TwoWay}"
-                    TextAlignment="Center"/>
+                    Text="{Binding Email, Mode=TwoWay}"/>
                 <PasswordBox
                     
                     Width="600"
                     Margin="20"
                     FontSize="40"
                     PlaceholderText="Password"
-                     
                     PasswordChar="*"/>
             </StackPanel>
         </Viewbox>
