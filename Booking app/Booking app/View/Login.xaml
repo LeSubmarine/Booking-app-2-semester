@@ -80,8 +80,8 @@
                     Margin="20"
                     FontSize="40"
                     PlaceholderText="Password"
-                    Text="{Binding Password, Mode=TwoWay}"
-                    TextAlignment="Center" />
+                     
+                    PasswordChar="*"/>
             </StackPanel>
         </Viewbox>
         <Viewbox
