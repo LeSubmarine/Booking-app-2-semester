@@ -138,15 +138,20 @@ namespace Booking_app.ViewModel
             }
             else
             {
-               AvailableRooms = new ObservableCollection<Facility>(PersistencyService.GetFacilities());
+               var tempRooms = new ObservableCollection<Facility>(PersistencyService.GetFacilities());
+               //var ownBookingsOnDay =
+               //    from m in PersistencyService.GetBookings() where m.Email == LoggedUser.Email select m;
+               //ownBookingsOnDay = from m in ownBookingsOnDay where m.Date == Date.Date select
                for (int i = 0; i < AvailableRooms.Count; i++)
                {
-                   if ((from m in PersistencyService.GetBookings() where AvailableRooms[i].FacilityNo == m.FacilityNo && m.Email == LoggedUser.Email && m.Date == Date select m).Any())
+                   if ((from m in PersistencyService.GetBookings() where AvailableRooms[i].FacilityNo == m.FacilityNo && m.Email == LoggedUser.Email && m.Date == Date.Date select m).Any())
                    {
-                       AvailableRooms.RemoveAt(i);
+                       tempRooms.RemoveAt(i);
                        i--;
                    }
                }
+
+               AvailableRooms = tempRooms;
                TeacherBooking = true;
             }
         }
@@ -165,7 +170,7 @@ namespace Booking_app.ViewModel
                 if (TeacherBooking) //Ikke færdig - mangler error tekst
                 {
                     //Vil læren gerne booke rummet selv hvis det allerede er booket?
-                    if (await CheckIfBookedForTeacher(Date.DateTime, SelectedRoom))
+                    if (await CheckIfBookedForTeacher(Date.DateTime, AvailableRooms[SelectedRoom].FacilityNo))
                     {
                         var bookingsOnDateWithRoom = from m in PersistencyService.GetBookings()
                             where m.Date == Date && m.FacilityNo == AvailableRooms[SelectedRoom].FacilityNo
@@ -259,7 +264,7 @@ namespace Booking_app.ViewModel
 
         public async Task<bool> CheckIfBookedForTeacher(DateTime date, int roomNo)
         {
-            var bookingsOnDateWithRoom = from m in Persistency.PersistencyService.GetBookings()
+            var bookingsOnDateWithRoom = from m in PersistencyService.GetBookings()
                 where m.Date == date && m.FacilityNo == roomNo
                 select m;
             if (bookingsOnDateWithRoom.Any())
