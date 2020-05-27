@@ -144,7 +144,7 @@ namespace Booking_app.ViewModel
                    select m;
                foreach (var booking in ownBookings)
                {
-                   AvailableRooms.Remove((from m in PersistencyService.GetFacilities() where booking.FacilityNo == m.FacilityNo select m).First());
+                   AvailableRooms.Remove(PersistencyService.GetFacility(booking.FacilityNo));
                }
                TeacherBooking = true;
             }
