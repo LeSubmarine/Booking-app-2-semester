@@ -56,44 +56,35 @@
             Grid.ColumnSpan="4"
             VerticalAlignment="Top">
             <StackPanel>
-
-                <ListView ItemsSource="{Binding AvailableRooms, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedRoom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-            </StackPanel>
-        </Viewbox>
-        <Viewbox
-            Grid.Row="2"
-            Grid.RowSpan="6"
-            Grid.Column="2"
-            Grid.ColumnSpan="4"
-            Margin="20"
-            VerticalAlignment="Top">
-            <StackPanel>
                 <TextBlock
                     HorizontalAlignment="Center"
                     FontFamily="{Binding Font}"
                     Text="Date" />
                 <DatePicker Width="300" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ListView ItemsSource="{Binding AvailableRooms, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedRoom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
         </Viewbox>
+        
         <StackPanel
             Grid.Row="9"
             Grid.Column="3"
             Grid.ColumnSpan="2"
             Background="#FFF387">
             <Button
-                Width="375"
+                Width="400"
                 Height="90"
                 Background="#FFF387"
                 Command="{Binding BookRoomCommand}"
                 Content="Book"
-                FontSize="50" />
+                FontSize="50" 
+                HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel
             Grid.Row="9"
             Grid.Column="1"
             Background="#FFF387">
             <Button
-                Width="190"
+                Width="200"
                 Height="90"
                 Background="#FFF387"
                 Command="{Binding BackCommand}"
