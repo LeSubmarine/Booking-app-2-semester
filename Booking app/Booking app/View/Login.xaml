@@ -52,6 +52,11 @@
                 VerticalAlignment="Center"
                 FontSize="80"
                 Text="Gimme Dat Room" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="60"
+                Text="Zealand booking app for students and teachers"/>
         </StackPanel>
         <StackPanel
             Grid.Row="2"
