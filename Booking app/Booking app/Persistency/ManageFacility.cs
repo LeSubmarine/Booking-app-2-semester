@@ -18,42 +18,42 @@ namespace Booking_app.Persistency
             get => _connectionString;
         }
 
-        public ManageFacility()
-        {
-            int rowsAffected = 0;
+        //public ManageFacility()
+        //{
+        //    int rowsAffected = 0;
 
 
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                string queryString = $"CREATE TABLE Facility(FacilityNo int NOT NULL PRIMARY KEY,Floor int NOT NULL,Size int NOT NULL);";
+        //    using (SqlConnection connection = new SqlConnection(ConnectionString))
+        //    {
+        //        string queryString = $"CREATE TABLE Facility(FacilityNo int NOT NULL PRIMARY KEY,Floor int NOT NULL,Size int NOT NULL);";
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+        //        SqlCommand command = new SqlCommand(queryString, connection);
 
-                command.Connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
-            }
+        //        command.Connection.Open();
+        //        rowsAffected = command.ExecuteNonQuery();
+        //    }
 
 
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                string queryString = $"CREATE TABLE ZealandUser(Email varchar(50) NOT NULL PRIMARY KEY,Password varchar(50) NOT NULL,Name varchar(50) NOT NULL,School varchar(50) NOT NULL);";
+        //    using (SqlConnection connection = new SqlConnection(ConnectionString))
+        //    {
+        //        string queryString = $"CREATE TABLE ZealandUser(Email varchar(50) NOT NULL PRIMARY KEY,Password varchar(50) NOT NULL,Name varchar(50) NOT NULL,School varchar(50) NOT NULL);";
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+        //        SqlCommand command = new SqlCommand(queryString, connection);
 
-                command.Connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
-            }
+        //        command.Connection.Open();
+        //        rowsAffected = command.ExecuteNonQuery();
+        //    }
 
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                string queryString = $"CREATE TABLE Booking(BookingNo int NOT NULL PRIMARY KEY,FacilityNo int NOT NULL,Email varchar(50) NOT NULL,Date datetime NOT NULL);";
+        //    using (SqlConnection connection = new SqlConnection(ConnectionString))
+        //    {
+        //        string queryString = $"CREATE TABLE Booking(BookingNo int NOT NULL PRIMARY KEY,FacilityNo int NOT NULL,Email varchar(50) NOT NULL,Date datetime NOT NULL);";
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+        //        SqlCommand command = new SqlCommand(queryString, connection);
 
-                command.Connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
-            }
-        }
+        //        command.Connection.Open();
+        //        rowsAffected = command.ExecuteNonQuery();
+        //    }
+        //}
 
         public int ExecuteNonQueryFacility(string queryString)
         {
