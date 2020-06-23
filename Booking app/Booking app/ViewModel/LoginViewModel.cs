@@ -17,6 +17,17 @@ namespace Booking_app.ViewModel
         {
             CreateUserCommand = new RelayCommand(NaviCreateUser);
             LoginCommand = new RelayCommand(Login);
+            //ManageFacility manageBooking = new ManageFacility();
+            //manageBooking.Create(new Facility{FacilityNo = 0,Floor = 1,Size = 1});
+            //manageBooking.Create(new Facility{FacilityNo = 1,Floor = 2,Size = 1});
+            //manageBooking.Create(new Facility{FacilityNo = 2,Floor = 1,Size = 1});
+            //manageBooking.Create(new Facility{FacilityNo = 3,Floor = 2,Size = 1});
+            //manageBooking.Create(new Facility{FacilityNo = 4,Floor = 1,Size = 2});
+            //manageBooking.Create(new Facility{FacilityNo = 5,Floor = 2,Size = 2});
+            //manageBooking.Create(new Facility{FacilityNo = 6,Floor = 1,Size = 2});
+            //manageBooking.Create(new Facility{FacilityNo = 7,Floor = 2,Size = 2});
+            //manageBooking.Create(new Facility{FacilityNo = 8,Floor = 1,Size = 1});
+            
         }
 
         public string Email { get; set; }

@@ -10,7 +10,7 @@ namespace Booking_app.Persistency
 {
     public class ManageZealandUser
     {
-        string _connectionString = "Server = tcp:bookingapp2semester.database.windows.net,1433;Initial Catalog = BookingAppDB; Persist Security Info=False;User ID = hmt; Password=!henrik1mike1tobias!; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
+        string _connectionString = "Server=tcp:sqlbookingnummer2.database.windows.net,1433;Initial Catalog=SqlDBBookingNummer2;Persist Security Info=False;User ID=hmt;Password=!henrik1mike1tobias!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         string ConnectionString
         {

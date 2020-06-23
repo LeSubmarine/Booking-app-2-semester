@@ -11,11 +11,48 @@ namespace Booking_app.Persistency
 {
     public class ManageFacility : IManageFacility
     {
-        string _connectionString = "Server = tcp:bookingapp2semester.database.windows.net,1433;Initial Catalog = BookingAppDB; Persist Security Info=False;User ID = hmt; Password=!henrik1mike1tobias!; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
+        string _connectionString = "Server=tcp:sqlbookingnummer2.database.windows.net,1433;Initial Catalog=SqlDBBookingNummer2;Persist Security Info=False;User ID=hmt;Password=!henrik1mike1tobias!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         string ConnectionString
         {
             get => _connectionString;
+        }
+
+        public ManageFacility()
+        {
+            int rowsAffected = 0;
+
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string queryString = $"CREATE TABLE Facility(FacilityNo int NOT NULL PRIMARY KEY,Floor int NOT NULL,Size int NOT NULL);";
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                command.Connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string queryString = $"CREATE TABLE ZealandUser(Email varchar(50) NOT NULL PRIMARY KEY,Password varchar(50) NOT NULL,Name varchar(50) NOT NULL,School varchar(50) NOT NULL);";
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                command.Connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string queryString = $"CREATE TABLE Booking(BookingNo int NOT NULL PRIMARY KEY,FacilityNo int NOT NULL,Email varchar(50) NOT NULL,Date datetime NOT NULL);";
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                command.Connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
         }
 
         public int ExecuteNonQueryFacility(string queryString)
